@@ -4,5 +4,9 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // apiUrl: 'http://localhost:8000/api/',
+  // apiAdminUrl: 'http://localhost:8000/api/admin/'
+  apiUrl: 'https://cmsapi.testing.info.ve/api/',
+  apiAdminUrl: 'https://cmsapi.testing.info.ve/api/admin/'
 };

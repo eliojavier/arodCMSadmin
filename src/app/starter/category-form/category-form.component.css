@@ -1,3 +1,7 @@
 .content-wrapper {
   min-height: 738px;
 }
+
+mat-form-field {
+  width: 100%
+}

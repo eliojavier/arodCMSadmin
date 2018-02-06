@@ -1,0 +1,80 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Articles
+      <!--<small>categories</small>-->
+    </h1>
+    <!--<ol class="breadcrumb">-->
+    <!--<li><a routerLink="admin"><i class="fa fa-dashboard"></i> Home</a></li>-->
+    <!--<li class="active">Dashboard</li>-->
+    <!--</ol>-->
+  </section>
+
+  <section class="content">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Articles</h3>
+          </div>
+          <div class="panel-body">
+            <mat-form-field>
+              <input matInput [(ngModel)]="term" placeholder="Filter">
+            </mat-form-field>
+            <table class="table table-hover" [mfData]="articles" #mf="mfDataTable"
+                   [mfRowsOnPage]="rowsOnPage">
+              <thead>
+              <tr class="dimgray">
+                <th>
+                  <mfDefaultSorter by="title"><span>Title</span></mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter by="body"><span>Article</span></mfDefaultSorter>
+                </th>
+                <th>
+                  <span>Detalles</span>
+                </th>
+                <th *ngIf="role == 'writer' || role == 'editor'">
+                  <span>Editar</span>
+                </th>
+                <th>
+                  <span>Eliminar</span>
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of mf.data | articlesFilter:term">
+                <td><b>{{item.title}}</b></td>
+                <td>{{item.body.substring(1,100).concat('...')}}</td>
+                <td>
+                  <a mat-mini-fab class="steelblue" [routerLink]="[item.id]">
+                    <i class="material-icons">visibility</i>
+                  </a>
+                </td>
+                <td *ngIf="role == 'user'">
+                  <a mat-mini-fab class="steelblue" [routerLink]="['edit/' + item.id]">
+                    <i class="material-icons">mode_edit</i>
+                  </a>
+                </td>
+                <td *ngIf="role == 'user'">
+                  <a mat-mini-fab class="steelblue" [routerLink]="['edit/' + item.id]">
+                    <i class="material-icons">mode_edit</i>
+                  </a>
+                </td>
+              </tr>
+              </tbody>
+              <tfoot>
+              <tr>
+                <td colspan="8">
+                  <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                </td>
+              </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
